@@ -1,0 +1,8 @@
+{
+	"patterns": [
+		"(console\\.log\\(.*?\\))",
+		"(<cfdump|writedump)(.*?)(>|;)",
+		"(<cfabort|abort)(.*?)(>|;)",
+		"var_dump\\(.*?\\)"
+	]
+}
