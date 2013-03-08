@@ -10,17 +10,27 @@ class DebugKillerCommand(sublime_plugin.WindowCommand):
 		self.view = self.window.active_view()
 		self.filePath = self.view.file_name()
 		self.fileName = os.path.basename(self.filePath)
-		self.scope = self.view.syntax_name(self.view.sel()[0].b)
+		self.scope = ",".join(self.view.syntax_name(self.view.sel()[0].b).strip().split(" "))
 
 		self.settings = sublime.load_settings("DebugKiller.sublime-settings")
-		self.patterns = self.settings.get("patterns")
+		self.allPatterns = self.settings.get("patterns")
+		self.patterns = []
 
+
+		#
+		# Filter our patterns by our scope
+		#
+		self.patterns = [p for p in self.allPatterns if self.scope in p["scopes"]]
+		
+		#
+		# Configure the output view, perform operation search and destroy
+		#
 		self.configureOutputView()
 		self.searchAndDestroy(self.filePath)
 		self.showView()
 
 	def searchAndDestroy(self, file):
-		print "Debug Killer initializing %s directives..." % len(self.patterns)
+		print "Debug Killer initializing %s directive%s..." % (len(self.patterns), "s" if len(self.patterns) > 1 else "")
 		self.writeToView("Debug Killer initializing %s directives...\n\n" % len(self.patterns))
 
 		lineNum = 0
@@ -33,7 +43,7 @@ class DebugKillerCommand(sublime_plugin.WindowCommand):
 			lineNum += 1
 
 			for pattern in self.patterns:
-				for match in re.finditer(pattern, line, re.IGNORECASE):
+				for match in re.finditer(pattern["pattern"], line, re.IGNORECASE):
 					msg = "Target found: %s:%s : %s" % (lineNum, match.start(), match.group(0))
 					self.writeToView(msg + "\n")
 
