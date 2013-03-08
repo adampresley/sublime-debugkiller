@@ -10,7 +10,7 @@ class DebugKillerCommand(sublime_plugin.WindowCommand):
 		self.view = self.window.active_view()
 		self.filePath = self.view.file_name()
 		self.fileName = os.path.basename(self.filePath)
-		self.scope = ",".join(self.view.syntax_name(self.view.sel()[0].b).strip().split(" "))
+		self.scope = self.view.syntax_name(self.view.sel()[0].b).strip().split(" ")
 
 		self.settings = sublime.load_settings("DebugKiller.sublime-settings")
 		self.allPatterns = self.settings.get("patterns")
@@ -20,8 +20,18 @@ class DebugKillerCommand(sublime_plugin.WindowCommand):
 		#
 		# Filter our patterns by our scope
 		#
-		self.patterns = [p for p in self.allPatterns if self.scope in p["scopes"]]
-		
+		for p in self.allPatterns:
+			for s in p["scopes"]:
+				if s in self.scope:
+					self.patterns.append(p)
+					break
+
+		print ""
+		print "All patterns: %s" % self.allPatterns
+		print "Scope: %s" % self.scope
+		print "Patterns: %s" % self.patterns
+		print ""
+
 		#
 		# Configure the output view, perform operation search and destroy
 		#

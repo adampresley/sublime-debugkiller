@@ -2,23 +2,38 @@
 	"patterns": [
 		{
 			"pattern": "(console\\.log\\(.*?\\))",
-			"scopes": "storage.type.function.js,meta.function.json.js,source.js"
+			"scopes": [
+				"storage.type.function.js,meta.function.json.js,source.js"
+			]
 		},
 		{
 			"pattern": "(<cfdump|writedump)(.*?)(>|;)",
-			"scopes": "entity.name.tag.cf.function.cfml,meta.tag.block.function.cfml,text.html.cfm.embedded.cfml,source.cfscript.cfc"
+			"scopes": [
+				"text.html.cfm.embedded.cfml",
+				"source.cfscript.cfc",
+				"text.html.cfm"
+			]
 		},
 		{
 			"pattern": "(<cfabort|abort)(.*?)(>|;)",
-			"scopes": "entity.name.tag.cf.function.cfml,meta.tag.block.function.cfml,text.html.cfm.embedded.cfml,source.cfscript.cfc"
+			"scopes": [
+				"text.html.cfm.embedded.cfml",
+				"source.cfscript.cfc",
+				"text.html.cfm"
+			]
 		},
 		{
 			"pattern": "var_dump\\(.*?\\)",
-			"scopes": "source.sql.embedded.php,string.quoted.double.sql.php,source.php.embedded.block.html,text.html.basic"
+			"scopes": [
+				"source.sql.embedded.php,string.quoted.double.sql.php,source.php.embedded.block.html,text.html.basic",
+				"text.html.basic"
+			]
 		},
 		{
 			"pattern": "logger\\.(debug|info|fatal|error).+",
-			"scopes": "source.ruby"
+			"scopes": [
+				"source.ruby"
+			]
 		}
 	]
 }
