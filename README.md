@@ -7,12 +7,14 @@ Here are some examples in a few languages where you might have debug
 statements in code:
 
 ```coldfusion
+<!-- ColdFusion -->
 <cfset qryResult = someDAO.getSomeData(id=12345) />
 <cfdump var="#qryResult#" />
 <cfabort />
 ```
 
 ```javascript
+// JavaScript
 resultCallback = function(data) {
    console.log(data);
    if (data.length) {
@@ -22,6 +24,7 @@ resultCallback = function(data) {
 ```
 
 ```php
+// PHP
 function getData($id) {
    $qryResult = $someDAO.getSomeData($id);
    var_dump($qryResult);
