@@ -34,3 +34,5 @@ function getData($id) {
 With this plugin press *CTRL + ALT + K* and you get
 
 ![Screenshot](./images/result-screenshot.png)
+
+For more information visit http://adampresley.github.com/sublime-debugkiller/.
