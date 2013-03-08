@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <title>Sublime Debug Killer by adampresley</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Sublime Debug Killer</h1>
+        <h2>Find debug statements unintentionally left behind in your code</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/adampresley/sublime-debugkiller/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/adampresley/sublime-debugkiller/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/adampresley/sublime-debugkiller" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>Sublime Debug Killer</h1>
+
+<p>Find debug statements unintentionally left behind in your code. As developers 
+and web application builders we sometimes have a need to see more information
+in our code and will write debug statements to get what we need. </p>
+
+<p>Here are some examples in a few languages where you might have debug
+statements in code:</p>
+
+<pre lang="coldfusion"><code>&lt;!-- ColdFusion --&gt;
+&lt;cfset qryResult = someDAO.getSomeData(id=12345) /&gt;
+&lt;cfdump var="#qryResult#" /&gt;
+&lt;cfabort /&gt;
+</code></pre>
+
+<div class="highlight"><pre><span class="c1">// JavaScript</span>
+<span class="nx">resultCallback</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+   <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// do stuff...</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<div class="highlight"><pre><span class="c1">// PHP</span>
+<span class="k">function</span> <span class="nf">getData</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
+   <span class="nv">$qryResult</span> <span class="o">=</span> <span class="nv">$someDAO</span><span class="o">.</span><span class="nx">getSomeData</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
+   <span class="nb">var_dump</span><span class="p">(</span><span class="nv">$qryResult</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>With this plugin press <em>CTRL + ALT + K</em> and you get</p>
+
+<p><img src="./images/result-screenshot.png" alt="Screenshot"></p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
