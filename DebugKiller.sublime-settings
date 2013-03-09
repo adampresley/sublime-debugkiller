@@ -3,7 +3,9 @@
 		{
 			"pattern": "(console\\.log\\(.*?\\))",
 			"scopes": [
-				"storage.type.function.js,meta.function.json.js,source.js"
+				"storage.type.function.js",
+				"meta.function.json.js",
+				"source.js"
 			]
 		},
 		{
@@ -25,7 +27,9 @@
 		{
 			"pattern": "var_dump\\(.*?\\)",
 			"scopes": [
-				"source.sql.embedded.php,string.quoted.double.sql.php,source.php.embedded.block.html,text.html.basic",
+				"string.quoted.double.sql.php",
+				"source.php.embedded.block.html",
+				"source.sql.embedded.php",
 				"text.html.basic"
 			]
 		},
