@@ -1,3 +1,13 @@
+#
+# History:
+#
+# 2013-03-09:
+#    - 
+#
+# 2013-03-08:
+#    - Initial release
+#
+
 import os
 import re
 import sublime
@@ -13,9 +23,16 @@ class DebugKillerCommand(sublime_plugin.WindowCommand):
 		self.scope = self.view.syntax_name(self.view.sel()[0].b).strip().split(" ")
 
 		self.settings = sublime.load_settings("DebugKiller.sublime-settings")
+		self.projectSettings = self.view.settings().get("sublime-debugkiller")
+
 		self.allPatterns = self.settings.get("patterns")
 		self.patterns = []
 
+		if self.projectSettings:
+			print "Project settings found. Loading %s pattern(s)..." % len(self.projectSettings["patterns"])
+
+			for p in self.projectSettings["patterns"]:
+				self.allPatterns.append(p)
 
 		#
 		# Filter our patterns by our scope
