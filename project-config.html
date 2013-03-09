@@ -38,6 +38,77 @@
 
 			<hr />
 
+			<p>
+				In the section titled <a href="global-config.html">Global Config</a> we talked about how
+				to configure patterns for the plugin to identify based on the <strong>scope</strong> of
+				the current file being edited. In this section we'll talk about how you can also
+				add patterns at the project level.
+			</p>
+
+			<p>
+				At times it might be desirable to have the Debug Killer plugin look for certain patterns
+				based on what 
+				<a href="http://docs.sublimetext.info/en/latest/file_management/file_management.html#projects" target="_blank">Sublime project</a> 
+				you are working on. This is useful is many ways. For example you may be working on a project
+				that uses a specific framework that has special logging functions. You may want Debug Killer
+				to look for these logging functions while only working in this project.
+			</p>
+
+			<br />
+			<h2>Example</h2>
+
+			<p>
+				Let's pretend we have a project open and we want to add a check for the debug framework method called
+				<strong>debugMe()</strong>. Here's how. First in Sublime click the <em>Project</em> menu and selected 
+				<em>Edit Project</em></li>. You should see something that looks like this:
+			</p>
+
+<pre class="brush: js;">{
+   "folders":
+   [
+      {
+         "path": "/home/me/code/python/my-project"
+      }
+   ]
+}</pre>
+
+			<p>
+				The above is what a typical project file looks like. One cool feature about Sublime is how 
+				easy it is to add custom settings to any project. This is done by adding a <em>settings</em>
+				key and adding whatever you wish. To add custom patterns at a project-level you will need
+				to first add a <em>settings</em> key that contains another dictionary called <em>sublime-debugkiller</em>.
+				Under that should be a key named <em>patterns</em> that is a list (array) of patterns, much like
+				those found in the global settings file. Here's a sample based on our imaginary debug method
+				named <strong>debugMe()</strong>.
+			</p>
+
+<pre class="brush: js; highlight: [8,9,10,11,12,13,14,15,16,17,18,19]">{
+   "folders":
+   [
+      {
+         "path": "/home/me/code/python/my-project"
+      }
+   ],
+   "settings": {
+      "sublime-debugkiller": {
+         "patterns": [
+            {
+               "pattern": "debugMe\\s(.*?)",
+               "scopes": [
+                  "source.python"
+               ]
+            }
+         ]
+      }
+   }
+}</pre>
+
+			<p>
+				Now, when working in this project and you press the key sequence to
+				activate Debug Killer this pattern will be added to the global list.
+				If the file being examined is a Python file it will find all instances
+				of the <strong>debugMe()</strong> method call.
+			</p>
 		</section>
 	</div>
 
