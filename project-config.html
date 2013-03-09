@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/shCore.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="stylesheets/shThemeFadeToGrey.css" media="screen" />
 
-	<title>Sublime Debug Killer by adampresley</title>
+	<title>Project Config :: Sublime Debug Killer by adampresley</title>
 </head>
 
 <body>
@@ -28,56 +28,16 @@
 
 	<div class="container">
 		<section id="main_content">
-			<h1>Sublime Debug Killer</h1>
+			<h1>Sublime Debug Killer - Project Config</h1>
 
 			<section id="sections">
 				<a href="index.html" class="btn">Home</a>
 				<a href="global-config.html" class="btn">Global Config</a>
-				<!--a href="project-config.html" class="btn">Project Config</a-->
+				<a href="project-config.html" class="btn">Project Config</a>
 			</section>
 
 			<hr />
 
-			<p>
-				Find debug statements unintentionally left behind in your code. As developers 
-				and web application builders we sometimes have a need to see more information
-				in our code and will write debug statements to get what we need.
-			</p>
-
-			<p>
-				Here are some examples in a few languages where you might have debug
-				statements in code:
-			</p>
-
-<pre class="brush: coldfusion;">&lt;!--- ColdFusion ---&gt;
-&lt;cfset qryResult = someDAO.getSomeData(id=12345) /&gt;
-&lt;cfdump var="#qryResult#" /&gt;
-&lt;cfabort /&gt;</pre>
-
-<pre class="brush: js;">// JavaScript
-resultCallback = function(data) {
-   console.log(data);
-   if (data.length) {
-      // do stuff...
-   }
-}</pre>
-
-<pre class="brush: php;">// PHP
-function getData($id) {
-   $qryResult = $someDAO->getSomeData($id);
-   var_dump($id);
-}</pre>
-
-			<br />
-			<p>With this plugin press <em>CTRL + ALT + K</em> and you get</p>
-
-			<p><img src="images/result-screenshot.png" alt="Screenshot"></p>
-
-			<p>
-				The above screenshot indicates that our code had two debug 
-				statement candidates. Clicking on either of them will 
-				take you to and highlight the line of code.
-			</p>
 		</section>
 	</div>
 

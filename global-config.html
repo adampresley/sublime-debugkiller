@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/shCore.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="stylesheets/shThemeFadeToGrey.css" media="screen" />
+
+	<title>Global Config :: Sublime Debug Killer by adampresley</title>
+</head>
+
+<body>
+	<header>
+		<div class="container">
+			<h1>Sublime Debug Killer</h1>
+			<h2>Find debug statements unintentionally left behind in your code</h2>
+
+			<section id="downloads">
+				<a href="https://github.com/adampresley/sublime-debugkiller/zipball/master" class="btn">Download as .zip</a>
+				<a href="https://github.com/adampresley/sublime-debugkiller/tarball/master" class="btn">Download as .tar.gz</a>
+				<a href="https://github.com/adampresley/sublime-debugkiller" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+			</section>
+		</div>
+	</header>
+
+	<div class="container">
+		<section id="main_content">
+			<h1>Sublime Debug Killer - Global Config</h1>
+
+			<section id="sections">
+				<a href="index.html" class="btn">Home</a>
+				<a href="global-config.html" class="btn">Global Config</a>
+				<!-- a href="project-config.html" class="btn">Project Config</a-->
+			</section>
+
+			<hr />
+
+			<p>
+				The Debug Killer plugin relies on a configuration file in the plugin directory called <em>DebugKiller.sublime-settings</em>.
+				The settings found here tell the plugin what debug directives to look for based on what type of source files
+				it is looking at. These settings can be overridden by creating a file by the same name in your 
+				<a href="http://docs.sublimetext.info/en/latest/basic_concepts.html" target="_blank">Sublime User directory</a>.
+			</p>
+
+			<p>
+				The settings file contains a key named <strong>patterns</strong>. This is a list (array) of the type of debug
+				statements the plugin looks for. As an example the pattern that looks for the <em>var_dump()</em> method
+				in PHP looks like this.
+			</p>
+
+<pre class="brush: js;">{
+   "pattern": "var_dump\\(.*?\\)",
+   "scopes": [
+      "string.quoted.double.sql.php",
+      "source.php.embedded.block.html",
+      "source.sql.embedded.php",
+      "text.html.basic"
+   ]
+}</pre>
+
+			<br />
+
+			<h2>Patterns and Scopes</h2>
+			<p>
+				Each pattern must be in a dictionary (object) and contain two keys: <em>pattern</em> and <em>scopes</em>.
+				The <em>pattern</em> key is regex that defines what the plugin looks for. The <em>scopes</em> key
+				is a list (array) of Sublime scopes that this pattern applies to.
+			</p>
+
+			<p>
+				So let's talk scopes for a minute. Each type of language Sublime supports, be it built in or
+				installed through a plugin, has one or more scopes associated with it. For example if you 
+				wanted to provide a pattern for debug statements in the Clojure language you would need to
+				know the scope to attach it to.
+			</p>
+
+			<p>
+				The easiest way to find the scope of a language in Sublime is to open its <strong>tmLanguage</strong>
+				definition. In the Clojure example you would find this in your <a href="http://docs.sublimetext.info/en/latest/basic_concepts.html" target="_blank">Packages directory</a>
+				in the <strong>Clojure</strong> subdirectory in a file named <strong>Clojure.tmLanguage</strong>. If you 
+				open that file and search for <em>&lt;key&gt;scopeName&lt;/key&gt;</em>. When you find that look at the line below
+				it. You should find text that contains <strong>source.clojure</strong>. That is the scope name. 
+			</p>
+
+			<br />
+
+			<h2>Example</h2>
+
+			<p>
+				Let's see what a Clojure pattern would look like that looks for a method named <strong>logme()</strong> (notice that
+				this is fake, not real).
+			</p>
+
+<pre class="brush: js;">{
+   "pattern": "logme\\(.*?\\)",
+   "scopes": [
+      "source.clojure"
+   ]
+}</pre>
+		</section>
+	</div>
+
+	<script src="javascripts/syntaxhighlighter.min.js"></script>
+	<script src="javascripts/main.js"></script>
+
+	<script>
+		SyntaxHighlighter.all();
+	</script>
+</body>
+</html>
